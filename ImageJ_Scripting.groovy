@@ -303,6 +303,10 @@ sinusoidImp = convertService.convert(sinusoidDataset, ImagePlus.class)
 
 // 3. Using ImageJFunctions
 
+/*
+ * For further information on mixing and matching IJ1 and IJ2, see:
+ * https://imagej.net/ImageJ1-ImageJ2_cheat_sheet
+ */
 
 // Run "Find Maxima...", an ImageJ1 plugin, to count the maxima
 
