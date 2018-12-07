@@ -35,10 +35,9 @@
 // Let's do something with our image. First print its name:
 println(image.getName())
 
-return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 // UNCOMMENT THE FOLLOWING LINES TO CONTINUE
-//#@ String (label="Your name") name
+#@ String (label="Your name") name
 
 /*
  * In the above line, we're asking for a "name" text input.
@@ -54,16 +53,16 @@ return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
  */
 
 // An informative message
-//#@ String (visibility=MESSAGE, value="Please enter some parameter values", persist=false, required=false) msg
+#@ String (visibility=MESSAGE, value="Please enter some parameter values", persist=false, required=false) msg
 
 // We can provide a set of predefined choices
-//#@ String (label="Which measurement?", choices={mean,median,min,max}) measurement
+#@ String (label="Which measurement?", choices={mean,median,min,max}) measurement
 
 // A File parameter can have two styles: "open" (the default) or "save"
-//#@ File (style=save, label="Save image to") destinationFile
+#@ File (style=save, label="Save image to") destinationFile
 
 // A slider to choose a numeric input value
-//#@ Double (style=slider, min=0.5, max=10, stepSize=0.5, columns=3) someValue
+#@ Double (style=slider, min=0.5, max=10, stepSize=0.5, columns=3) someValue
 
 // [EXERCISE] Add an Integer parameter in the range 0-3 with style "scroll bar"
 //#@ Integer ...

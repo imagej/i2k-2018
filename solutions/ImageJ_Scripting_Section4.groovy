@@ -35,10 +35,9 @@
 // Let's do something with our image. First print its name:
 println(image.getName())
 
-return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 // UNCOMMENT THE FOLLOWING LINES TO CONTINUE
-//#@ String (label="Your name") name
+#@ String (label="Your name") name
 
 /*
  * In the above line, we're asking for a "name" text input.
@@ -54,19 +53,19 @@ return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
  */
 
 // An informative message
-//#@ String (visibility=MESSAGE, value="Please enter some parameter values", persist=false, required=false) msg
+#@ String (visibility=MESSAGE, value="Please enter some parameter values", persist=false, required=false) msg
 
 // We can provide a set of predefined choices
-//#@ String (label="Which measurement?", choices={mean,median,min,max}) measurement
+#@ String (label="Which measurement?", choices={mean,median,min,max}) measurement
 
 // A File parameter can have two styles: "open" (the default) or "save"
-//#@ File (style=save, label="Save image to") destinationFile
+#@ File (style=save, label="Save image to") destinationFile
 
 // A slider to choose a numeric input value
-//#@ Double (style=slider, min=0.5, max=10, stepSize=0.5, columns=3) someValue
+#@ Double (style=slider, min=0.5, max=10, stepSize=0.5, columns=3) someValue
 
 // [EXERCISE] Add an Integer parameter in the range 0-3 with style "scroll bar"
-//#@ Integer ...
+#@ Integer (style="scroll bar", min=0, max=3) someOtherValue
 
 /*
  * So far, we only asked for INPUT parameters,
@@ -79,11 +78,10 @@ return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
  * NB: the type specification is optional for outputs, see below
  */
 
-//#@output Boolean success
+#@output Boolean success
 
 success = true
 
-return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 /*
  * NB: Note that all these script parameters also work in .ijm macros!
@@ -120,7 +118,6 @@ baboon = io.open("https://imagej.net/images/baboon.gif")
 
 ui.show(baboon)
 
-return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 /*
  * Note that in addition to IOService, there's also DatasetIOService,
@@ -133,12 +130,11 @@ return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 // Let's also define another output here:
 
-//#@output value
+#@output value
 
 // Now we run the "stats.mean" op.
 // (Note that it returns an ImgLib2 Type, so we need to call getRealDouble() to get its value.)
-value = ops.run("stats.mean", image).getRealDouble()
-
+value = ops.run("stats.$measurement", image).getRealDouble()
 
 // [EXERCISE] Change the above ops call to compute any of stats.mean, stats.median, stats.min, stats.max
 // according the user choice of the "measurement" parameter
@@ -183,7 +179,6 @@ value = ops.run("stats.mean", image).getRealDouble()
  * try out the new "Batch" button of the script editor, or "Batch" in the search bar result.
  */
 
-return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
 
 
 
@@ -203,8 +198,8 @@ return // REMOVE THIS LINE TO CONTINUE BEYOND THIS POINT
  */
 
 // We'll need some new inputs:
-//#@ RoiManager rm
-//#@ ConvertService convertService
+#@ RoiManager rm
+#@ ConvertService convertService
 
 // Get the first ROI in the ROI Manager
 roi = rm.getRoi(0)
