@@ -1,0 +1,10 @@
+name: i2k-2018
+channels:
+  - conda-forge
+  - damianavila82 # for rise
+dependencies:
+  - beakerx
+  - openjdk=8
+  - pyimagej
+  - rise
+  - scikit-image
