@@ -251,9 +251,52 @@ io.save(image, destinationFile.getPath())
  * 
  * In many cases, we can rely on the framework to do the conversion autmatically.
  * 
- * For other cases, we can the ConvertService to convert from one type to another.
+ * For other cases, we can use the ConvertService to convert from one type to another.
  */
 
-// ImagePlus <-> Dataset
-// Roi <-> RealMask
-// 	
+// If we need to have the active image both as (IJ2) Dataset and (IJ1) ImagePlus,
+// we can just use two input parameters (the Dataset above and a new ImagePlus here):
+
+#@ ImagePlus imp
+
+// Run an ImageJ1 plugin, e.g. Invert...
+import ij.IJ
+IJ.run(imp, "Invert", "")
+
+// If we really need to convert between the two,
+// (e.g. because you create a new image and need to process it)
+// we have several options to do so:
+
+// a) ConvertService.convert()
+// b) LegacyService.getImageMap.register...
+// c) ImageJFunctions.wrap()
+
+// Create a new image using Ops
+
+sinusoidImage = ops.run("create.img", [100, 100])
+
+// Fill image with some data
+
+ops.run("image.equation", sinusoidImage, "63 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1])) + 127")
+
+// Create a Dataset from the result
+#@ DatasetService datasetService
+sinusoidDataset = datasetService.create(sinusoidImage)
+
+// UNCOMMENT THE LINE BELOW TO SHOW THE IMAGE
+//ui.show(sinusoidDataset)
+
+// Convert the image
+
+// 1. Using ConvertService
+import ij.ImagePlus
+sinusoidImp = convertService.convert(sinusoidDataset, ImagePlus.class)
+
+// 2. Using LegacyService
+
+// 3. Using ImageJFunctions
+
+
+// Run "Find Maxima...", an ImageJ1 plugin, to count the maxima
+
+IJ.run(sinusoidImp, "Find Maxima...", "noise=10 output=Count")
