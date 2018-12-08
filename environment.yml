@@ -5,5 +5,4 @@ dependencies:
   - beakerx
   - openjdk=8
   - pyimagej
-  - rise
   - scikit-image
