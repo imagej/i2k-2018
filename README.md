@@ -1,3 +1,7 @@
+___Please see the
+[ImageJ Tutorials repository](https://github.com/imagej/tutorials)
+for the latest ImageJ documentation and examples.___
+
 This repository houses supporting materials for two workshops of
 the 2018 "Images to Knowledge with ImageJ and Friends" conference:
 
